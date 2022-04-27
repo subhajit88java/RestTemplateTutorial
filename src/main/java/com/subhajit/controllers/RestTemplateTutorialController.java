@@ -483,4 +483,23 @@ public class RestTemplateTutorialController {
 
 	}
 
+	
+	@GetMapping("/testConnectionTimeout")
+	public ResponseEntity<?> testConnectionTimeout() {
+		
+		ResponseEntity<String> responseEntity = null;
+		
+		try {
+			responseEntity = restTemplate.exchange(
+					"http://localhost:8080/spring-boot-input-output-storehouse/con-timeout",
+					HttpMethod.GET, null, String.class);
+		}catch(Exception e) {
+			e.printStackTrace();
+			responseEntity = new ResponseEntity(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
+		return responseEntity;
+
+	}
+	
 }
