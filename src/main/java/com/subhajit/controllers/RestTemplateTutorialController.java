@@ -434,30 +434,47 @@ public class RestTemplateTutorialController {
 
 	}
 	
-	@GetMapping("/testFileDownloadHardcodeFilepath")
+	@GetMapping("/testFileDownloadInputstreamResource")
 	public ResponseEntity<?> testFileDownloadHardcodeFilepath() {
 		
 		ResponseEntity<Resource> responseEntity = restTemplate.exchange(
-				"http://localhost:10000/spring-boot-input-output-storehouse/test-file-download-hardcode-filepath",
+				"http://localhost:10000/spring-boot-input-output-storehouse/test-file-download-inputstream-resource",
 				HttpMethod.GET, null, Resource.class);
-		Resource resource = responseEntity.getBody();
-		System.out.println("resource : " + resource.getFilename());
 		
 		return responseEntity;
 
 	}
 	
-	@GetMapping("/tesFileDownloadByteArray")
+	@GetMapping("/testFileDownloadPathResource")
+	public ResponseEntity<?> testFileDownloadPathResource() {
+		
+		ResponseEntity<Resource> responseEntity = restTemplate.exchange(
+				"http://localhost:10000/spring-boot-input-output-storehouse/test-file-download-path-resource",
+				HttpMethod.GET, null, Resource.class);
+		
+		return responseEntity;
+
+	}
+	
+	@GetMapping("/testFileByteArray")
+	public ResponseEntity<?> tesFileByteArray() {
+		
+		ResponseEntity<?> responseEntity = restTemplate.exchange(
+				"http://localhost:10000/spring-boot-input-output-storehouse/test-file-bytearray",
+				HttpMethod.GET, null, byte[].class);
+
+		return responseEntity;
+
+	}
+	
+	@GetMapping("/testFileBase64EncodeString")
 	public ResponseEntity<?> tesFileDownloadByteArray() {
 		
-		ResponseEntity<byte[]> responseEntity = restTemplate.exchange(
-				"http://localhost:10000/spring-boot-input-output-storehouse/test-file-download-bytearray",
+		ResponseEntity<?> responseEntity = restTemplate.exchange(
+				"http://localhost:10000/spring-boot-input-output-storehouse/test-file-base64-encode-string",
 				HttpMethod.GET, null, byte[].class);
-		
-		String encodedString = Base64.encodeBase64String(responseEntity.getBody());
-		System.out.println("encodedString : " + encodedString);
-		
-		return ResponseEntity.ok(encodedString);
+
+		return responseEntity;
 
 	}
 	
