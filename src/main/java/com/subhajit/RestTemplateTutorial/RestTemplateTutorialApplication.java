@@ -15,7 +15,7 @@ public class RestTemplateTutorialApplication {
 		SpringApplication.run(RestTemplateTutorialApplication.class, args);
 	}
 
-	@Bean
+	@Bean(name="restTemplate")
 	public RestTemplate getRestTemplate() {
 		RestTemplate restTemplate = new RestTemplate();
 		restTemplate.setRequestFactory(getClientHttpRequestFactory());
